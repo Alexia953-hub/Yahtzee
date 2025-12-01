@@ -30,7 +30,7 @@ public class Yahtzee
             while(nonHeldDice.size() > 0 || turns == 0)
             {
 
-                for(int i = 0; i <= nonHeldDice.size(); i++ )
+                for(int i = 0; i <= nonHeldDice.size()-1; i++ )
                 {
                     int diceNum = i + 1;
                     System.out.println(nonHeldDice.get(i) + " is the dice number " + diceNum);
@@ -39,7 +39,16 @@ public class Yahtzee
                 Scanner ScannerDiceHolder = new Scanner(System.in);
                 System.out.println("How many dice would you like to keep? ");
                 int heldDice = ScannerDiceHolder.nextInt();
-                for(int x = 0; x <= heldDice)
+                for(int x = 0; x <= heldDice-1; x++)
+                {
+                    Scanner ScannerDiceListPlacement = new Scanner(System.in);
+                    System.out.println("Which dice would you like to keep? [1,2,3,4,5,6]");
+                    int diceBeingHeld = ScannerDiceHolder.nextInt();
+                    newCup.hold(diceBeingHeld);
+                    newCup.getHeldDice(); // figure out how to remove held dice from player cup without adjusting placement in the list
+                                          // use 0s as placement? and take them out before reroll?
+                }
+                
 
             }
         }

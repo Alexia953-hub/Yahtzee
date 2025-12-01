@@ -19,12 +19,18 @@ public class Cup
             // take away held dice from playercup
             // put it in heldDice
             diceToHold -= 1;
-            heldDice.add(diceToHold);
-
+            int diceheld = playerCup.get(diceToHold);
+            
+            heldDice.add(diceheld);
+        }
+        public void removeHeldInPlayer(int diceToHold)
+        {
+            diceToHold -= 1;
+            playerCup.remove(diceToHold);
         }
         
         
-        public void OtherDiceRoll()
+        public void otherDiceRoll() // rolls non held dice but keeping 6 or less dice based on rollAllDice()
         {
             // rerolls the non held dice
             for(int i = playerCup.size(); i > 0; i--)
@@ -33,10 +39,10 @@ public class Cup
              playerCup.add(this.value);
             }
         }
-        public void rollAllDice()
+        public void rollAllDice() // first cup made (creates only 6 dice)
         {
             playerCup.clear();
-            for(int i = 0; i < 6; i++)  
+            for(int i = 0; i < 5; i++)  
                 {
                     roll();
                     playerCup.add(this.value);
