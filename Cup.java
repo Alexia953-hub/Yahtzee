@@ -10,7 +10,7 @@ public class Cup
         public int roll()
         {
             // rolls the dice
-            this.value = (int) (Math.random() * 5 + 1);
+            this.value = (int) ((Math.random() * 5) + 1);
             return value;
         }
         
@@ -20,23 +20,29 @@ public class Cup
             // put it in heldDice
             diceToHold -= 1;
             int diceheld = playerCup.get(diceToHold);
-            
             heldDice.add(diceheld);
+            playerCup.set(diceToHold, 0);
         }
-        public void removeHeldInPlayer(int diceToHold)
+        public void removeHeldInPlayer()
         {
-            diceToHold -= 1;
-            playerCup.remove(diceToHold);
+            while(playerCup.get(0) > 0)
+            {
+            int zeroIndex = playerCup.get(0);
+            playerCup.remove(zeroIndex);
+            }
         }
         
         
         public void otherDiceRoll() // rolls non held dice but keeping 6 or less dice based on rollAllDice()
         {
             // rerolls the non held dice
-            for(int i = playerCup.size(); i > 0; i--)
+            int i = playerCup.size();
+            playerCup.clear();
+            while(0 < i)
             {
              roll();
              playerCup.add(this.value);
+             i--;
             }
         }
         public void rollAllDice() // first cup made (creates only 6 dice)
