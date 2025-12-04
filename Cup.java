@@ -25,9 +25,9 @@ public class Cup
         }
         public void removeHeldInPlayer()
         {
-            while(playerCup.get(0) > 0)
+            while(playerCup.indexOf(0) > -1)
             {
-            int zeroIndex = playerCup.get(0);
+            int zeroIndex = playerCup.indexOf(0);
             playerCup.remove(zeroIndex);
             }
         }
@@ -66,5 +66,9 @@ public class Cup
         public ArrayList getPlayerCup()
         {
             return playerCup;
+        }
+        public void printPlayerCup()
+        {
+            System.out.println(playerCup);
         }
     }
