@@ -22,37 +22,41 @@ public class Yahtzee
             Players player = new Players(playerName);          // create new player object for each player in the list           
             playerList.add(player);
         }
+        
+        
+        
+        // the for loop in another while loop until score board is filled up for each player
+        
         for(Players player : playerList)                      // for player in playerlist
         {
+            player.clearTurn();
+            player.addTurn();
             newCup.rollAllDice();
-            while(player.getTurn() < 3)
+            while(newCup.getPlayerCup().size() > 0)
             {
+                System.out.println(newCup.getPlayerCup().size());
                 if (newCup.getPlayerCup().size() < 5)
                 {
                     System.out.println("Rerolling your cup!");
                     newCup.otherDiceRoll();
                 }
-                System.out.println("runs after if statement");
                 
-                for(int i = 0; i <= newCup.getPlayerCup().size()-1; i++ )
-                {
-                    int diceNum = i + 1;
-                    System.out.println(newCup.getPlayerCup().get(i) + " is the dice number " + diceNum);
-                }
-                System.out.println("runs after for loop");
-                                                                    // asking if want to keep any dice
+                
                 Scanner ScannerDiceHolder = new Scanner(System.in);
-            
-                
+                newCup.printDice();
                 System.out.println("How many dice would you like to keep? ");
                 int heldDice = ScannerDiceHolder.nextInt();
-                if (heldDice > 5)
+                while(heldDice > newCup.getPlayerCup().size())
                 {
-                    System.out.println("too many dice");
+                    
+                    Scanner ScannerDiceHolder2 = new Scanner(System.in);
+                    System.out.println("How many dice would you like to keep? ");
+                    int heldDice2 = ScannerDiceHolder.nextInt();
+                    heldDice = heldDice2;
+                    
                 }
-                else
-                {
-                     for(int x = 0; x <= heldDice-1; x++)
+      
+                for(int x = 0; x <= heldDice-1; x++)
                 {
 
                     Scanner ScannerDiceListPlacement = new Scanner(System.in);
@@ -65,14 +69,17 @@ public class Yahtzee
                                           // figure out how to remove held dice from player cup without adjusting placement in the list
                                           // use 0s as placement? and take them out before reroll?
                 }
+                player.addTurn();
+                newCup.printPlayerCup();
                 newCup.removeHeldInPlayer();
                 newCup.printPlayerCup();
-                newCup.getPlayerCup();
-                player.addTurn();
+
+
                 
                 
 
             }
+        }
             newCup.getPlayerCup().clear();
         }
 
@@ -82,5 +89,3 @@ public class Yahtzee
         // scoreObject.printScoreSheet();
 
     }
-}
-}

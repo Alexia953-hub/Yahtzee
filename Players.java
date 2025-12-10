@@ -22,6 +22,17 @@ public class Players
         this.turn += 1;
     }
 
+    public void clearTurn()
+    {
+        this.turn = 0;
+    }
+
+    public void playTurn()
+    {
+        this.turn += 1;
+        System.out.println("rolling for " + this.name);
+    }
+
     public int getTurn()
     {
         return this.turn;
