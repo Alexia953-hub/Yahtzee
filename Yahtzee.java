@@ -44,9 +44,12 @@ public class Yahtzee
                 
                 Scanner ScannerDiceHolder = new Scanner(System.in);
                 newCup.printDice();
+
                 System.out.println("How many dice would you like to keep? ");
+
                 int heldDice = ScannerDiceHolder.nextInt();
-                while(heldDice > newCup.getPlayerCup().size())
+                
+                while(heldDice > newCup.getPlayerCup().size()) // make true or false
                 {
                     
                     Scanner ScannerDiceHolder2 = new Scanner(System.in);

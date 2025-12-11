@@ -4,6 +4,8 @@ public class Cup
     {
         private ArrayList<Dice> playerCup = new ArrayList<Dice>();
         private ArrayList<Dice> heldDice = new ArrayList<Dice>();
+        private Dice placeHolder = new Dice();
+        
         // use one single cup for all players?
         
 
@@ -14,6 +16,15 @@ public class Cup
             Dice Dice3 = new Dice();
             Dice Dice4 = new Dice();
             Dice Dice5 = new Dice();
+
+            Dice DicePlacement = new Dice();
+            DicePlacement.setValue(0);
+
+            playerCup.add(Dice1);
+            playerCup.add(Dice2);
+            playerCup.add(Dice3);
+            playerCup.add(Dice4);
+            playerCup.add(Dice5);
         }
 
         
@@ -21,17 +32,18 @@ public class Cup
         {
             // take away held dice from playercup
             // put it in heldDice
+            placeHolder.setValue(0);
             diceToHold -= 1;
             Dice diceheld = playerCup.get(diceToHold);
             heldDice.add(diceheld);
-            playerCup.set(diceToHold, 0);
+            playerCup.set(diceToHold, placeHolder);
         }
         public void removeHeldInPlayer()
         {
             System.out.println(playerCup);
-            while(playerCup.contains(0))
+            while(playerCup.contains(placeHolder))
             {
-            int zeroIndex = playerCup.indexOf(0);
+            int zeroIndex = playerCup.indexOf(placeHolder);
             playerCup.remove(zeroIndex);
             }
         }
@@ -41,7 +53,9 @@ public class Cup
             for(int i = 0; i <= playerCup.size()-1; i++ )
                 {
                     int diceNum = i + 1;
-                    System.out.println(playerCup.get(i) + " is the dice number " + diceNum);
+                    Dice dice = playerCup.get(i);
+                    dice.printValue("is your dice value ", diceNum);
+                    
                 }
         }
         
@@ -58,14 +72,14 @@ public class Cup
             }
         }
         public void rollAllDice() // first cup made (creates only 6 dice)
-        {
-            playerCup.clear();
+        {    
             for(int i = 0; i < 5; i++)  
                 {
-                    roll();
-                    playerCup.add(this.value);
+                    Dice dices = playerCup.get(i);
+                    dices.roll();
                 }    
         }
+
         
         
         
