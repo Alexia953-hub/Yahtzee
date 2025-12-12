@@ -18,6 +18,10 @@ public class Dice
         System.out.println(this.value + " " + text + " " + diceNum);
     }
 
+    public void printValues() {
+        System.out.println(this.value);
+    }
+
     public void setValue(int value2) {
         this.value = value2;
     }
