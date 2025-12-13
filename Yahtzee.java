@@ -29,66 +29,96 @@ public class Yahtzee
         
         for(Players player : playerList)                      // for player in playerlist
         {
-            player.clearTurn();
-            player.addTurn();
+            player.startTurn();
             newCup.rollAllDice();
-            while(newCup.getPlayerCup().size() > 0)
+            while(player.getTurn() <= 3 && newCup.getPlayerCup().size() != 0)
             {
+
                 System.out.println(newCup.getPlayerCup().size());
                 if (newCup.getPlayerCup().size() < 5)
                 {
-                    System.out.println("Rerolling your cup!");
+                    System.out.println("Rerolling " + player.getName() + " cup");
                     newCup.otherDiceRoll();
                 }
                 
                 
-                Scanner ScannerDiceHolder = new Scanner(System.in);
-                newCup.printPlayerCup();
-
-                System.out.println("How many dice would you like to keep? ");
-
-                int heldDice = ScannerDiceHolder.nextInt();
-                
-                while(heldDice > newCup.getPlayerCup().size()) // make true or false
+                int b = 1;
+                int y = 2;
+                while(b != y) // if the dice input is less than the size of the list
                 {
                     
-                    Scanner ScannerDiceHolder2 = new Scanner(System.in);
+                    newCup.printPlayerCup();
+                    Scanner ScannerDiceHolder = new Scanner(System.in);
                     System.out.println("How many dice would you like to keep? ");
-                    int heldDice2 = ScannerDiceHolder.nextInt();
-                    heldDice = heldDice2;
-                    
-                }
-      
-                for(int x = 0; x <= heldDice-1; x++)
+                    int heldDice = ScannerDiceHolder.nextInt();
+                    if(heldDice <= newCup.getPlayerCup().size())
+                    {
+                        b = 2;
+                        for(int x = 0; x <= heldDice-1; x++)
                 {
 
-                    Scanner ScannerDiceListPlacement = new Scanner(System.in);
-                    System.out.println("Which dice would you like to keep? [1,2,3,4,5]");
-                    int diceBeingHeld = ScannerDiceHolder.nextInt();
+                        Scanner ScannerDiceListPlacement = new Scanner(System.in);
+                        System.out.println("Which dice would you like to keep? [1,2,3,4,5]");
+                        int diceBeingHeld = ScannerDiceHolder.nextInt();
 
             
-                    newCup.hold(diceBeingHeld);
-                    newCup.getHeldDice();
+                        newCup.hold(diceBeingHeld);
+                        newCup.printHeldDice();
                                           // figure out how to remove held dice from player cup without adjusting placement in the list
                                           // use 0s as placement? and take them out before reroll?
                 }
-                player.addTurn();
-                newCup.printPlayerCup();
+                        
+                    }
+                    else
+                    {
+                        System.out.println("Put a number that is within 1 - " + newCup.getPlayerCup().size());
+                    }
+                    
+                }
+      
+                
+                player.Turn();
                 newCup.removeHeldInPlayer();
-                newCup.printPlayerCup();
 
 
                 
                 
 
             }
+            
+            if(newCup.getPlayerCup().size() > 0)
+            {
+                for(int i = newCup.getPlayerCup().size(); i > 0; i--)
+                {
+                    newCup.hold(i + 1);
+                    newCup.removeHeldInPlayer();
+
+                }
+            }
+
+                int x = 1;
+                int y = 2;
+                while(x != y)
+                {
+                    System.out.println(player.getName() + " currently have this set of 5 dice");
+                    newCup.printHeldDice();
+                    Scanner ScannerDiceHolder = new Scanner(System.in);
+                    System.out.println("Where in your scorecard do you want to go?");
+                    String heldDice = ScannerDiceHolder.nextLine();
+                    // if where they want to go in scorecard not possible keep repeating till it is
+                    // and check if they can go anywhere
+                    
+                }
+            }
+
         }
-            newCup.getPlayerCup().clear();
         }
+
+        
 
     
 
         // Score scoreObject = new Score();
         // scoreObject.printScoreSheet();
 
-    }
+    

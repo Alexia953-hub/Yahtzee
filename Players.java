@@ -13,18 +13,14 @@ public class Players
         return this.name;
     }
 
-    public void setTurn(int number)
-    {
-        this.turn = number;
-    }
-    public void addTurn()
+    public void Turn()
     {
         this.turn += 1;
     }
-
-    public void clearTurn()
+    public void startTurn()
     {
         this.turn = 0;
+        this.turn += 1;
     }
 
     public void playTurn()

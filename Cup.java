@@ -7,24 +7,27 @@ public class Cup
         private Dice placeHolder = new Dice();
         
         // use one single cup for all players?
-        
+        private Dice Dice1 = new Dice();
+        private Dice Dice2 = new Dice();
+        private Dice Dice3 = new Dice();
+        private Dice Dice4 = new Dice();
+        private Dice Dice5 = new Dice();
 
         public Cup()
         {
-            Dice Dice1 = new Dice();
-            Dice Dice2 = new Dice();
-            Dice Dice3 = new Dice();
-            Dice Dice4 = new Dice();
-            Dice Dice5 = new Dice();
+           
 
             Dice DicePlacement = new Dice();
             DicePlacement.setValue(0);
 
-            playerCup.add(Dice1);
-            playerCup.add(Dice2);
-            playerCup.add(Dice3);
-            playerCup.add(Dice4);
-            playerCup.add(Dice5);
+            
+        }
+
+        public void foreachDice(int x) // removing after 3 turns the non held die and putting them in held without any inputs
+        {
+            Dice dice = playerCup.get(x);
+            heldDice.add(dice);
+
         }
 
         public void printPlayerCup()
@@ -46,6 +49,7 @@ public class Cup
             heldDice.add(diceheld);
             playerCup.set(diceToHold, placeHolder);
         }
+
         public void removeHeldInPlayer()    // removes the placeholders
         {
             while(playerCup.contains(placeHolder))
@@ -69,7 +73,7 @@ public class Cup
         public void otherDiceRoll() // rolls non held dice but keeping 6 or less dice based on rollAllDice()
         {
             // rerolls the non held dice
-            int i = playerCup.size();
+            int i = playerCup.size() - 1;
             while(0 < i)
             {
              Dice dices = playerCup.get(i);
@@ -79,31 +83,34 @@ public class Cup
         }
         public void rollAllDice() // first cup made (rolls 6 dice)
         {    
+            playerCup.clear();
+            heldDice.clear();
+            playerCup.add(Dice1);
+            playerCup.add(Dice2);
+            playerCup.add(Dice3);
+            playerCup.add(Dice4);
+            playerCup.add(Dice5);
             for(int i = 0; i < 5; i++)  
                 {
                     Dice dices = playerCup.get(i);
                     dices.roll();
                 }    
         }
-        public void clearHeldDice()
-        {
-            heldDice.clear();
-        }
 
+
+        // public void clearLists()
+        // {
+        //     playerCup.clear();
+        //     heldDice.clear();
+        // }
         
         
-        
-        
-        public ArrayList<Dice> getHeldDice()
+        public ArrayList getHeldCup()
         {
-            for(int i = 0; i < heldDice.size(); i++)
-            {
-            Dice dice = heldDice.get(i);
-            System.out.println(dice.getValue());
-            
-            }
             return heldDice;
         }
+        
+        
         public ArrayList getPlayerCup()
         {
             return playerCup;
