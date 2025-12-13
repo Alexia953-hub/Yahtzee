@@ -84,6 +84,7 @@ public class Cup
         public void rollAllDice() // first cup made (rolls 6 dice)
         {    
             playerCup.clear();
+            System.out.println("hi");
             heldDice.clear();
             playerCup.add(Dice1);
             playerCup.add(Dice2);
@@ -115,4 +116,6 @@ public class Cup
         {
             return playerCup;
         }
+
+
     }
