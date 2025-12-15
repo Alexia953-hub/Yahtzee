@@ -74,7 +74,7 @@ public class Cup
         {
             // rerolls the non held dice
             int i = playerCup.size() - 1;
-            while(0 < i)
+            while(0 <= i)
             {
              Dice dices = playerCup.get(i);
              dices.roll();

@@ -126,11 +126,204 @@ public class Players
                 scoreSheet.setFourOfAKind(6);
                 return true;
             }
-            else
+            
+            if(x.equals("full house"))
+        {
+            
+            for(int b = 1; b <= 5; b++)
+            {
+                if(b == 1);
+                {
+                    if(this.aces == 3)
+                    {
+                        
+                        Checking(b);
+                    }
+                }
+                if(b == 2)
+                {
+                    if(this.twos == 3)
+                    {
+                        Checking(b);
+                    }
+                }
+                if(b == 3)
+                {
+                    if(this.threes == 3)
+                    {
+                        Checking(b);
+                    }
+                }
+                if(b == 4)
+                {
+                    if(this.fours == 3)
+                    {
+                        Checking(b);
+                    }
+                }
+                if(b == 5)
+                {
+                    if(this.fives == 3)
+                    {
+                        Checking(b);
+                    }
+                }
+                if(b == 6)
+                {
+                    if(this.sixes == 3)
+                    {
+                        Checking(b);
+                    }
+                }
+            }    
+        }
+        else
             {
                 return false;
             }
 
+        }
+    if(x.equals("small straight"))
+    {
+        boolean y = smallStraight();
+        if(y = true)
+        {
+            return true;
+        }
+    }
+    if(x.equals("large straight"))
+    {
+        boolean y = largeStraight();
+        if(y = true)
+        {
+            return true;
+        }
+    }
+    if(x.equals("yahtzee"))
+    {
+        boolean y = Yahtzee();
+        if(y = true)
+        {
+            return true;
+        }
+    }
+    return false;
+
+
+    }
+
+
+    public boolean Yahtzee()
+    {
+       if(this.aces == 5)
+       {
+        scoreSheet.setYahtzee();
+        return true;
+       }
+       if(this.twos == 5)
+       {
+        scoreSheet.setYahtzee();
+        return true;
+       }
+       if(this.threes == 5)
+       {
+        scoreSheet.setYahtzee();
+        return true;
+       }
+       if(this.fives == 5)
+       {
+        scoreSheet.setYahtzee();
+        return true;
+       }
+       if(this.sixes == 5)
+       {
+        scoreSheet.setYahtzee();
+        return true;
+       }
+       return false;
+        }
+
+    public boolean largeStraight()
+    {
+        if(aces >= 1)
+        {
+            if(twos >= 1)
+            {
+                if(threes >= 1)
+                {
+                    if(fours >= 1)
+                    {
+                         if(fives >= 1)
+                            {
+                            scoreSheet.setLargeStraight();
+                            return true;
+                            }
+                    }
+                }
+            }
+        }
+        if(twos >= 1)
+        {
+            if(threes >= 1)
+            {
+                if(fours >= 1)
+                {
+                    if(fives >= 1)
+                    {
+                         if(sixes >= 1)
+                            {
+                            scoreSheet.setLargeStraight();
+                            return true;
+                            }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    public boolean smallStraight()
+    {
+        if(aces >= 1)
+        {
+            if(twos >= 1)
+            {
+                if(threes >= 1)
+                {
+                    if(fours >= 1)
+                    {
+                        scoreSheet.setSmallStraight();
+                        return true;
+                    }
+                }
+            }
+        }
+        if(twos >= 1)
+        {
+            if(threes >= 1)
+            {
+                if(fours >= 1)
+                {
+                    if(fives >= 1)
+                    {
+                        scoreSheet.setSmallStraight();
+                        return true;
+                    }
+                }
+            }
+        }
+       if(threes >= 1)
+        {
+            if(fours >= 1)
+            {
+                if(fives >= 1)
+                {
+                    if(sixes >= 1)
+                    {
+                        scoreSheet.setSmallStraight();
+                        return true;
+                    }
+                }
+            }
         }
         return false;
     }
@@ -186,7 +379,7 @@ public class Players
                 ifTrue = true;
             }
         }
-
+        
     }
 
     public boolean getIfTrue()
@@ -195,6 +388,7 @@ public class Players
     }
     
 
+    
     
 
     public void printScoreSheet()
@@ -207,7 +401,66 @@ public class Players
 
 
 
+    public boolean Checking(int b)
+    {
+        for(int y = 1; y <= 6; y++)
+                        {
+                            if(y != b)
+                            {
+                            if(y == 1)
+                            {
+                                if(this.aces == 2)
+                                {
+                                    scoreSheet.setFullHouse();
+                                    return true;
+                                }
+                            }
+                            if(y == 2)
+                            {
+                                if(this.twos == 2)
+                                {
+                                    scoreSheet.setFullHouse();
+                                    return true;
+                                }
+                            }
+                            if(y == 3)
+                            {
+                                if(this.threes == 2){
+                                    scoreSheet.setFullHouse();
+                                    return true;
+                                }
+                            }
+                            if(y == 4)
+                            {
+                                if(this.fours == 2){
+                                    scoreSheet.setFullHouse();
+                                    return true;
+                                }
+                            }
+                            if(y == 5)
+                            {
+                                if(this.fives == 2)
+                                {
+                                    scoreSheet.setFullHouse();
+                                    return true;
+                                }
 
+                            }
+                            if(y == 6)
+                            {
+                                if(this.sixes == 2)
+                                {
+                                    scoreSheet.setFullHouse();
+                                    return true;
+                                }
+                            }
+        
+                        }
+                        }
+        return false;                
+        
+                        }
+                
     
 
 

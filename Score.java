@@ -18,7 +18,7 @@ public class Score
     private int CompleteUpper = aces + twos + threes + fours + fives + sixes;
     
     
-
+    private int totals;
 
     private int threeKind= 0;
     private int fourKind = 0;
@@ -29,7 +29,22 @@ public class Score
     private int bonusyahtzee = 0;
     private int totalLower = 0;
     
-    
+    public void setFullHouse()
+    {
+        fullHouse = true;
+    }
+    public void setSmallStraight()
+    {
+        smallStraight = true;
+    }
+    public void setLargeStraight()
+    {
+        largeStraight = true;
+    }
+    public void setYahtzee()
+    {
+        yahtzee = true;
+    }
     public void printUpperSheet()
     {
         System.out.println("Upper section |" + "game 1");
@@ -41,7 +56,7 @@ public class Score
         System.out.println("sixes = 6" + "| " + sixes);
         System.out.println("Total Score" + "| " + totalUpper);
         System.out.println("Bonus ( if score above 63)" + "| " + bonusUpper);
-         System.out.println("total" + "| " + CompleteUpper);
+         System.out.println("total" + "| " + calculateTotalUpper());
     }
 
     public void printLowerSheet()
@@ -55,7 +70,23 @@ public class Score
         System.out.println("YAHTZEE " + "| " + yahtzee);
         System.out.println("Yahtzee Bonus x 100" + "| " + bonusyahtzee);
         System.out.println("Total of lower section" + "| " + calculateTotalLower() );
-        System.out.println("total" + "| ");
+        System.out.println("total" + "| " + totalTotals());
+    }
+    public int totalTotals()
+    {
+        this.totals = calculateTotalLower() + calculateTotalUpper();
+        return this.totals;
+    }
+
+    
+    public int calculateTotalUpper()
+    {
+        int x = aces + twos + threes + fours + fives + sixes;
+        if(x > 65)
+        {
+            bonusUpper = true;
+        }
+        return x;
     }
     public void setThreeOfAKind(int x)
     {

@@ -181,12 +181,21 @@ public class Yahtzee
                         }
 
                     }
-                    if (upOrLow == "lower")
+                    if (upOrLow.equals("lower"))
                     {
                         Scanner ScannerScorePlace = new Scanner(System.in);
                         System.out.println("three of a kind, four of a kind, full house, small straight, large straight, yahtzee, yahtzee bonus");
                         String lowerSectionPlacement = ScannerScorePlace.nextLine();
-                        player.checkLower(lowerSectionPlacement);
+                        if (player.checkLower(lowerSectionPlacement) == true)
+                        {
+                            System.out.println("You used " + lowerSectionPlacement);
+                            player.printScoreSheet();
+                            finishedScore = true;
+                        }
+                        else
+                        {
+                            System.out.println("Not eligible");
+                        }
                         
                     }
                     // if where they want to go in scorecard not possible keep repeating till it is
