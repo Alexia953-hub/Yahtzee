@@ -7,7 +7,7 @@ public class Dice
 
     public void roll()
     {
-        this.value = (int) (Math.random() * 5 + 1);
+        this.value = (int) ((Math.random() * 5) + 1);
     }
 
     public int getValue() {

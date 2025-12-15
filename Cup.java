@@ -81,6 +81,19 @@ public class Cup
              i--;
             }
         }
+
+        public int numOfOneNum(int x)
+        {
+            int numofTimes = 0;
+            for (Dice dice : heldDice)
+            {
+                if(dice.getValue() == x)
+                {
+                    numofTimes += 1;
+                }
+            }
+            return numofTimes;
+        }
         public void rollAllDice() // first cup made (rolls 6 dice)
         {    
             playerCup.clear();

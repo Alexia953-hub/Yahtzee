@@ -88,6 +88,11 @@ public class Score
         }
         return x;
     }
+
+    public boolean getYahtzee()
+    {
+        return yahtzee;
+    }
     public void setThreeOfAKind(int x)
     {
         if(threeKind == 0)
