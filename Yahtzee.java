@@ -18,102 +18,196 @@ public class Yahtzee
             Scanner ScannerName = new Scanner(System.in);
             System.out.println("What is " + i + "player name? ");           // asking player names
             String playerName = ScannerName.nextLine();
-            
+            Score scoreSheet = new Score();  
             Players player = new Players(playerName);          // create new player object for each player in the list           
             playerList.add(player);
         }
         
         
-        
+    boolean gameOnGoing = true;
         // the for loop in another while loop until score board is filled up for each player
-        
+    while(gameOnGoing == true)
+    {
         for(Players player : playerList)                      // for player in playerlist
         {
             player.startTurn();
             newCup.rollAllDice();
+            player.resetAll();
             while(player.getTurn() <= 3 && newCup.getPlayerCup().size() != 0)
             {
 
                 System.out.println(newCup.getPlayerCup().size());
-                if (newCup.getPlayerCup().size() < 5)
+                if (newCup.getPlayerCup().size() <= 5)
                 {
-                    System.out.println("Rerolling " + player.getName() + " cup");
+                    System.out.println("Rolling " + player.getName() + " cup");
                     newCup.otherDiceRoll();
                 }
-                
-                
-                int b = 1;
-                int y = 2;
-                while(b != y) // if the dice input is less than the size of the list
+                boolean inSizeList = false;
+                boolean tooManyDice = true;
+                while(inSizeList == false) // if the dice input is less than the size of the list
                 {
                     
+                    System.out.println("These are the dice " + player.getName() + " can pick from: ");
                     newCup.printPlayerCup();
                     Scanner ScannerDiceHolder = new Scanner(System.in);
                     System.out.println("How many dice would you like to keep? ");
                     int heldDice = ScannerDiceHolder.nextInt();
-                    if(heldDice <= newCup.getPlayerCup().size())
+                    if(heldDice <= newCup.getPlayerCup().size() && heldDice > 0)
                     {
-                        b = 2;
+                        inSizeList = true;
+                       
+                                
                         for(int x = 0; x <= heldDice-1; x++)
-                {
+                            {
 
-                        Scanner ScannerDiceListPlacement = new Scanner(System.in);
-                        System.out.println("Which dice would you like to keep? [1,2,3,4,5]");
-                        int diceBeingHeld = ScannerDiceHolder.nextInt();
+                                Scanner ScannerDiceListPlacement = new Scanner(System.in);
+                                
+                                newCup.printPlayerCup();
+    
+                                System.out.println("Which dice would you like to keep? [1,2,3,4,5]");
+                                
+                                int diceBeingHeld = ScannerDiceHolder.nextInt();
+                                if (diceBeingHeld > newCup.getPlayerCup().size())
+                                {
+                                    x--;
+                                    System.out.println("Put a number that is within 0 - " + newCup.getPlayerCup().size());
 
-            
-                        newCup.hold(diceBeingHeld);
-                        newCup.printHeldDice();
-                                          // figure out how to remove held dice from player cup without adjusting placement in the list
-                                          // use 0s as placement? and take them out before reroll?
-                }
-                        
+                                }
+                                else
+                                {
+                      
+                                    newCup.hold(diceBeingHeld);
+                                    // newCup.removeHeldInPlayer(); 
+                                    System.out.println("These are the dice you currently have held");
+                                    newCup.printHeldDice();
+                                }
+                                
+                                
+                                }
+                    }
+                    if(heldDice == 0)
+                    {
+                        inSizeList = true;
                     }
                     else
-                    {
-                        System.out.println("Put a number that is within 1 - " + newCup.getPlayerCup().size());
-                    }
-                    
+                        {
+                            System.out.println("Put a number that is within 1 - " + newCup.getPlayerCup().size()); 
+                        }
+                        
                 }
-      
                 
+                    
+                        
                 player.Turn();
-                newCup.removeHeldInPlayer();
-
-
-                
-                
-
+                    
+                    
             }
-            
-            if(newCup.getPlayerCup().size() > 0)
+                if(newCup.getPlayerCup().size() > 0)
             {
                 for(int i = newCup.getPlayerCup().size(); i > 0; i--)
                 {
-                    newCup.hold(i + 1);
-                    newCup.removeHeldInPlayer();
+
+                    newCup.hold(i);
 
                 }
+                System.out.println("These are the dice you currently have held");
+                newCup.printHeldDice();
             }
-
-                int x = 1;
-                int y = 2;
-                while(x != y)
+                
+                boolean finishedScore = false;
+                
+                for(int i = newCup.getHeldCup().size() - 1; i >= 0; i--)
                 {
-                    System.out.println(player.getName() + " currently have this set of 5 dice");
-                    newCup.printHeldDice();
-                    Scanner ScannerDiceHolder = new Scanner(System.in);
-                    System.out.println("Where in your scorecard do you want to go?");
-                    String heldDice = ScannerDiceHolder.nextLine();
+                    Dice diceObject = newCup.getHeldCup().get(i);
+                    if(diceObject.getValue() == 1)
+                    {
+                        player.addAces(1);
+                    }
+                    if(diceObject.getValue() == 2)
+                    {
+                        player.addTwos(1);
+                    }
+                    if(diceObject.getValue() == 3)
+                    {
+                        player.addThrees(1);
+                    }
+                    if(diceObject.getValue() == 4)
+                    {
+                        player.addfours(1);
+                    }
+                    if(diceObject.getValue() == 5)
+                    {
+                        player.addfives(1);
+                    }
+                    if(diceObject.getValue() == 6)
+                    {
+                        player.addsixes(1);
+                    }
+                }
+                Score ScoreBoard = player.getPlayerScore();
+                    while(finishedScore == false)
+                    {
+                    // if(ScoreBoard))
+                        player.printScoreSheet();
+                        Scanner ScannerScoring = new Scanner(System.in);
+                        System.out.println("Upper or lower section? ");
+                        String upOrLow = ScannerScoring.nextLine();
+                        if (upOrLow.equals("upper"))
+                        {
+                            Scanner ScannerScorePlace = new Scanner(System.in);
+                            System.out.println("Aces, twos, threes, fours, fives, sixes?");
+                            String upperSectionPlacement = ScannerScorePlace.nextLine();
+                            if(player.getPlayerScore().ifTrueUp(upperSectionPlacement) == true) // if already filled already
+                                {
+                            
+                            
+                            player.upper(upperSectionPlacement);
+                            if(player.getIfTrue() == true)
+                            {   
+                                System.out.println("You dont have any " + upperSectionPlacement);
+                            }
+                            if(player.getIfTrue() == false)
+                                {
+                                
+                                System.out.println("You have added to " + upperSectionPlacement);
+                                player.printScoreSheet();
+                                finishedScore = true;
+                                }
+                            }
+                
+                        else
+                        {
+                            System.out.println("You already have something there or don't meet the requirements for " + upperSectionPlacement);
+                        }
+
+                    }
+                    if (upOrLow == "lower")
+                    {
+                        Scanner ScannerScorePlace = new Scanner(System.in);
+                        System.out.println("three of a kind, four of a kind, full house, small straight, large straight, yahtzee, yahtzee bonus");
+                        String lowerSectionPlacement = ScannerScorePlace.nextLine();
+                        player.checkLower(lowerSectionPlacement);
+                        
+                    }
                     // if where they want to go in scorecard not possible keep repeating till it is
                     // and check if they can go anywhere
                     
-                }
+                }  
+
+
+                
+                
+
+            }
+            
+            
+
+                
             }
 
         }
-        }
-
+    }
+        
         
 
     

@@ -47,17 +47,17 @@ public class Cup
             diceToHold -= 1;
             Dice diceheld = playerCup.get(diceToHold);
             heldDice.add(diceheld);
-            playerCup.set(diceToHold, placeHolder);
+            playerCup.remove(diceheld);
         }
 
-        public void removeHeldInPlayer()    // removes the placeholders
-        {
-            while(playerCup.contains(placeHolder))
-            {
-            int zeroIndex = playerCup.indexOf(placeHolder);
-            playerCup.remove(zeroIndex);
-            }
-        }
+        // public void removeHeldInPlayer()    // removes the placeholders
+        // {
+        //     while(playerCup.contains(placeHolder))
+        //     {
+        //     int zeroIndex = playerCup.indexOf(placeHolder);
+        //     playerCup.remove(zeroIndex);
+        //     }
+        // }
         
         // public void printDice()
         // {
@@ -84,7 +84,6 @@ public class Cup
         public void rollAllDice() // first cup made (rolls 6 dice)
         {    
             playerCup.clear();
-            System.out.println("hi");
             heldDice.clear();
             playerCup.add(Dice1);
             playerCup.add(Dice2);
@@ -106,7 +105,7 @@ public class Cup
         // }
         
         
-        public ArrayList getHeldCup()
+        public ArrayList<Dice> getHeldCup()
         {
             return heldDice;
         }
@@ -116,6 +115,8 @@ public class Cup
         {
             return playerCup;
         }
+
+        
 
 
     }
