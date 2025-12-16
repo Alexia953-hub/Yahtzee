@@ -84,7 +84,6 @@ public class Players
     {
         if(x.equals("three of a kind"))
         {
-            System.out.println("step one");
             if(threeOfAKind() == true)
             {
                 return true;

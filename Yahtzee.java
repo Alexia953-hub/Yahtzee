@@ -37,7 +37,6 @@ public class Yahtzee
             while(player.getTurn() <= 3 && newCup.getPlayerCup().size() != 0)
             {
 
-                System.out.println(newCup.getPlayerCup().size());
                 if (newCup.getPlayerCup().size() <= 5)
                 {
                     System.out.println("Rolling " + player.getName() + " cup");

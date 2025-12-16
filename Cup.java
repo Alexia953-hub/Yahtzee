@@ -43,7 +43,6 @@ public class Cup
         {
             // take away held dice from playercup
             // put it in heldDice
-            placeHolder.setValue(0);
             diceToHold -= 1;
             Dice diceheld = playerCup.get(diceToHold);
             heldDice.add(diceheld);

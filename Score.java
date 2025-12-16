@@ -23,27 +23,35 @@ public class Score
     private int threeKind= 0;
     private int fourKind = 0;
     private boolean fullHouse = false;
+    private int fullHouse2 = 0;
     private boolean smallStraight = false;
     private boolean largeStraight = false;
+    private int smallStraight2 = 0;
+    private int largeStraight2 = 0;
     private boolean yahtzee = false;
+    private int yahtzee2 = 0;
     private int bonusyahtzee = 0;
     private int totalLower = 0;
     
     public void setFullHouse()
     {
         fullHouse = true;
+        fullHouse2 = 25;
     }
     public void setSmallStraight()
     {
         smallStraight = true;
+        smallStraight2 = 30;
     }
     public void setLargeStraight()
     {
         largeStraight = true;
+        largeStraight2 = 30;
     }
     public void setYahtzee()
     {
         yahtzee = true;
+        yahtzee2 = 50;
     }
     public void printUpperSheet()
     {
@@ -64,9 +72,9 @@ public class Score
         System.out.println("Lower section |" + "game 1");
         System.out.println("3 of a Kind "+ "| " + threeKind);
         System.out.println("4 of a Kind "+ "| " + fourKind);
-        System.out.println("Full House "+ "| " + fullHouse);
-        System.out.println("Small Straight "+ "| " + smallStraight);
-        System.out.println("Large Straight "+ "| " + largeStraight);
+        System.out.println("Full House "+ "| " + fullHouse2);
+        System.out.println("Small Straight "+ "| " + smallStraight2);
+        System.out.println("Large Straight "+ "| " + largeStraight2);
         System.out.println("YAHTZEE " + "| " + yahtzee);
         System.out.println("Yahtzee Bonus x 100" + "| " + bonusyahtzee);
         System.out.println("Total of lower section" + "| " + calculateTotalLower() );
