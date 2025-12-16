@@ -199,7 +199,20 @@ public class Score
         int a = 0;
         int b = 0;
         int c = 0;
-        
+        int l = 0;
+        int k = 0;
+        if(fourKind > 0)
+        {
+            l = fourKind;
+        }
+        if(threeKind > 0)
+        {
+            k = threeKind;
+        }
+        if(fullHouse == true)
+        {
+            x = 25;
+        }
         if(fullHouse == true)
         {
             x = 25;
@@ -223,7 +236,7 @@ public class Score
               c+= 100;  
             }
         }
-        totalLower = x + y + a + b + c;
+        totalLower = x + y + a + b + c + l + k;
         return totalLower;
     }
 

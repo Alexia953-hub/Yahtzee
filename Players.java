@@ -181,7 +181,6 @@ public class Players
             int y = things.get(i);
             if(y >= 4)
             {
-                System.out.println(i);
                 scoreSheet.setFourOfAKind(i + 1);
                 resettothing();
                 return true;
