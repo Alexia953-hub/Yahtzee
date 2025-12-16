@@ -99,22 +99,17 @@ public class Score
         {
             threeKind =  x * 3;
         }
-        else
-        {
-            System.out.println("Already used three of a kind");
-        }
-
-        
     }
+    public int getThreeOfAKind()
+    {
+        return this.threeKind;
+    }
+    
     public void setFourOfAKind(int x)
     {
         if(fourKind == 0)
         {
             fourKind = x * 4;
-        }
-        else
-        {
-            System.out.println("Already used four of a kind");
         }
         
     }

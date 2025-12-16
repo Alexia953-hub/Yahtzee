@@ -85,13 +85,17 @@ public class Cup
         public int numOfOneNum(int x)
         {
             int numofTimes = 0;
-            for (Dice dice : heldDice)
+            for (int i = 0; i < heldDice.size(); i++)
             {
-                if(dice.getValue() == x)
+                Dice Object = heldDice.get(i);
+                System.out.println("this is i " + i);
+                System.out.println("this is dice value " + Object.getValue());
+                if(Object.getValue() == i + 1)
                 {
                     numofTimes += 1;
                 }
             }
+            System.out.println("num of times " + numofTimes + " " + x);
             return numofTimes;
         }
         public void rollAllDice() // first cup made (rolls 6 dice)
@@ -129,7 +133,6 @@ public class Cup
             return playerCup;
         }
 
-        
-
+       
 
     }

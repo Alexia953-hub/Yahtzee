@@ -30,9 +30,10 @@ public class Yahtzee
     {
         for(Players player : playerList)                      // for player in playerlist
         {
+            player.printScoreSheet();
             player.startTurn();
             newCup.rollAllDice();
-            player.resetAll();
+            
             while(player.getTurn() <= 3 && newCup.getPlayerCup().size() != 0)
             {
 
@@ -115,7 +116,7 @@ public class Yahtzee
             }
                 
                 boolean finishedScore = false;
-                
+                player.resetAll();
                 for(int i = newCup.getHeldCup().size() - 1; i >= 0; i--)
                 {
                     Dice diceObject = newCup.getHeldCup().get(i);
@@ -192,7 +193,7 @@ public class Yahtzee
                             player.printScoreSheet();
                             finishedScore = true;
                         }
-                        else
+                        if (player.checkLower(lowerSectionPlacement) == false)
                         {
                             System.out.println("Not eligible");
                         }

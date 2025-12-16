@@ -19,7 +19,26 @@ public class Players
 
     private Cup cup = new Cup();
 
+    private ArrayList<Integer> things = new ArrayList<Integer>();
+    
+    public void addtothing()
+    {
+        things.add(aces);
+        things.add(twos);
+        things.add(threes);
+        things.add(fours);
+        things.add(fives);
+        things.add(sixes);
 
+    }
+    public void resettothing()
+    {
+        things.remove(aces);
+        things.remove(twos);
+        things.remove(threes);
+        things.remove(fives);
+        things.remove(sixes);
+    }
 
 
 
@@ -65,30 +84,30 @@ public class Players
     {
         if(x.equals("three of a kind"))
         {
-           if(threeOfAKind() == true)
+            System.out.println("step one");
+            if(threeOfAKind() == true)
             {
                 return true;
             }
             
         }
-        if(x.equals("four of a kind"))
+        else if(x.equals("four of a kind"))
         {
             if(fourOfAKind() == true)
             {
                 return true;
             }
-            
-        if(x.equals("full house"))
+        }    
+        else if(x.equals("full house"))
         {
-            boolean y = largeStraight();
-            if(y == true)
+            if(FullHouse() == true)
             {
                 return true;
             }
             
 
         }
-    if(x.equals("small straight"))
+    else if(x.equals("small straight"))
     {
         boolean y = smallStraight();
         if(y = true)
@@ -96,7 +115,7 @@ public class Players
             return true;
         }
     }
-    if(x.equals("large straight"))
+    else if(x.equals("large straight"))
     {
         boolean y = largeStraight();
         if(y = true)
@@ -104,7 +123,7 @@ public class Players
             return true;
         }
     }
-    if(x.equals("yahtzee"))
+    else if(x.equals("yahtzee"))
     {
         boolean y = Yahtzee();
         if(y = true)
@@ -112,7 +131,7 @@ public class Players
             return true;
         }
     }
-     if(x.equals("yahtzee bonus"))
+    else if(x.equals("yahtzee bonus"))
     {
         if(scoreSheet.getYahtzee()== true)
         {
@@ -125,29 +144,29 @@ public class Players
         
     }
     
-            } 
             return false;      
                 }
 
     
     public boolean FullHouse()
     {
-        ArrayList dice = cup.getHeldCup();
+        addtothing();
         boolean twoOfAKind2 = false;
         boolean threeOfAKind2 = false;
-        for(int i = 0; i < dice.size(); i++)
+        for(int i = 0; i < things.size(); i++)
         {
-            if(cup.numOfOneNum(i) == 2)
+            if(things.get(i) == 2)
             {
                 twoOfAKind2 = true;
             }
-            if(cup.numOfOneNum(i) == 3)
+            else if(things.get(i) == 3)
             {
                 threeOfAKind2 = true;
             }
             if(twoOfAKind2 && threeOfAKind2)
             {
                 scoreSheet.setFullHouse();
+                resettothing();
                 return true;
             }
             
@@ -157,13 +176,15 @@ public class Players
 
     public boolean fourOfAKind()
     {
-        ArrayList dice = cup.getHeldCup();
-        for(int i = 0;i < dice.size(); i++)
+        addtothing();
+        for(int i = 0;i < things.size(); i++)
         {
-            int y = cup.numOfOneNum(i);
+            int y = things.get(i);
             if(y >= 4)
             {
-                scoreSheet.setFourOfAKind(y);
+                System.out.println(i);
+                scoreSheet.setFourOfAKind(i + 1);
+                resettothing();
                 return true;
             }
 
@@ -172,15 +193,16 @@ public class Players
         
     }
 
-     public boolean threeOfAKind()
+    public boolean threeOfAKind()
     {
-        ArrayList dice = cup.getHeldCup();
-        for(int i = 0;i < dice.size(); i++)
+        addtothing();
+        for(int i = 0;i < things.size(); i++)
         {
-            int y = cup.numOfOneNum(i);
+            int y = things.get(i);
             if(y >= 3)
             {
-                scoreSheet.setThreeOfAKind(y);
+                scoreSheet.setThreeOfAKind(i + 1);
+                resettothing();
                 return true;
             }
 
@@ -188,16 +210,19 @@ public class Players
         return false;
         
     }
+
+     
 
     public boolean Yahtzee()
     {
-       ArrayList dice = cup.getHeldCup(); 
-       for(int i = 0;i < dice.size(); i++)
+        addtothing();
+       for(int i = 0;i < things.size(); i++)
        {
-        int y = cup.numOfOneNum(i);
+        int y = things.get(i);
         if(y >= 5)
         {
             scoreSheet.setYahtzee();
+            resettothing();
             return true;
         }
        }
